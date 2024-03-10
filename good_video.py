@@ -46,7 +46,9 @@ async def send_frames(websocket):
             with output.condition:
                 output.condition.wait()
                 frame = output.frame
-                await websocket.send(frame)
+                modf_frame =b'EXPD' + frame
+                
+                await websocket.send(modf_frame)
     except Exception as e:
         print("Error! Frames",e)
 
