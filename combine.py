@@ -116,11 +116,11 @@ async def main():
     mode = b'BARC'
     last_saved = False
     good_barc = False
-    async with websockets.connect('ws://85.120.206.111:8001/ws') as websocket:
+    async with websockets.connect('ws://192.168.32.1:8001/ws') as websocket:
         while True:
             await send_frames(websocket,mode)
             response = await websocket.recv()
-            if 'notBar' in response: #nobarcode found, need update, I don't know how it named
+            if 'No barcode found' in response: #nobarcode found, need update, I don't know how it named
                 good_barc = False
             else:
                 good_barc = response
